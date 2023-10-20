@@ -1,6 +1,5 @@
 import { command, flag, flags, isBooleanAt, isStringAt, restArgumentsAt } from "@jondotsoy/flags"
 import createLogGroup from "./create-log-group"
-import getLogEvents from "./list-log-events"
 import putLogEvents from "./put-log-events"
 import createLogStream from "./create-log-stream"
 // import ui from "./ui"
@@ -17,7 +16,6 @@ export default async (args: string[]) => {
     listLogEvents: string[],
     createLogStream: string[],
     putLogEvents: string[],
-    getLogEvents: string[],
     ui: string[],
     help: boolean,
     output: string,
@@ -31,7 +29,6 @@ export default async (args: string[]) => {
       [command('list-log-events'), restArgumentsAt('listLogEvents')],
       [command('create-log-stream'), restArgumentsAt('createLogStream')],
       [command('put-log-events'), restArgumentsAt('putLogEvents')],
-      [command('get-log-events'), restArgumentsAt('getLogEvents')],
       [command('ui'), restArgumentsAt('ui')],
       [flag('--help', '-h'), isBooleanAt('help')],
       [flag('--output', '-o'), isStringAt('output')],
@@ -47,7 +44,6 @@ export default async (args: string[]) => {
     if (parsed.listLogEvents) return await listLogEvents(ctx, parsed.listLogEvents)
     if (parsed.createLogGroup) return await createLogGroup(ctx, parsed.createLogGroup)
     if (parsed.createLogStream) return await createLogStream(ctx, parsed.createLogStream)
-    if (parsed.getLogEvents) return await getLogEvents(ctx, parsed.getLogEvents)
     if (parsed.putLogEvents) return await putLogEvents(ctx, parsed.putLogEvents)
 
     console.log('help')
