@@ -51,7 +51,7 @@ export class ConsoleRender<T = any> {
     }
 
     for (const row of rows) {
-      console.log(row.map((cel, index) => cel.padEnd(rowSizing.at(index) ?? 0, ' ')).join('  '))
+      console.log(row.map((cel, index, items) => cel.padEnd(items.length - 1 === index ? 0 : rowSizing.at(index) ?? 0, ' ')).join('  '))
     }
   }
 
