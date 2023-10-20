@@ -20,12 +20,7 @@ List events stored
 
 ```shell
 dashplay list-log-events --log-group-name asd --log-stream-name asd
-# TIMESTAMP                MESSAGE
-# 10/19/2023, 6:05:42 PM   hola
-# 10/19/2023, 6:06:12 PM   hola2
-# 10/19/2023, 6:07:45 PM   hola
-# 10/19/2023, 6:07:48 PM   hola
-# 10/19/2023, 6:07:49 PM   hola
+# TIMESTAMP                 MESSAGE
 # 10/19/2023, 11:50:57 PM   INFO  Accepting connections at http://localhost:3000
 # 10/19/2023, 11:51:10 PM   INFO  Accepting connections at http://localhost:3000
 # 10/19/2023, 11:51:12 PM   HTTP  10/19/2023 11:51:12 PM ::1 GET /
