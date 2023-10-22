@@ -18,12 +18,12 @@ export default async (ctx: AppContext, args: string[]) => {
 
   const logStreams = await LogStream.listLogStream(ctx, logGroup)
 
-  new ConsoleRender(ctx, {
+  new ConsoleRender(logStreams, ctx, {
     table: {
       columns: {
         'ID': o => o.id,
         'NAME': o => o.name,
       }
     }
-  }).render(logStreams)
+  }).render()
 }

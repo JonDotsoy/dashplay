@@ -1,15 +1,15 @@
 import { atom } from "nanostores"
 import { ConnectionFactory } from "../db/connection-factory"
 import { Models } from "../db/models"
-import { Connection } from "../interfaces/connection"
+import { Connection, Engine, InitConnectionOptions } from "../interfaces/connection"
 
 type RefName = string
 
-type Options = {
-
+type Options<E extends string> = {
+  storageConnection?: InitConnectionOptions<E>
 }
 
-export class AppContext {
+export class AppContext<E extends string = 'sqlite'> {
   #connection?: Connection
   #models?: Models
 
@@ -17,7 +17,7 @@ export class AppContext {
     output: atom('table')
   }
 
-  private constructor() { }
+  private constructor(readonly options: Options<E>) { }
 
   get models() {
     if (!this.#models) throw new Error(`models is not ready yet`)
@@ -34,13 +34,16 @@ export class AppContext {
   async getSubConnection(refName: RefName): Promise<Connection> {
     const currentSubConnection = this.#subConnections.get(refName)
     if (currentSubConnection) return currentSubConnection
-    const subConnection = ConnectionFactory.create(`${this.connection.getRef()}/${refName}`)
+    const subConnection = ConnectionFactory.create(`${this.connection.ref}/${refName}`, this.connection.options)
     this.#subConnections.set(refName, subConnection)
     return subConnection
   }
 
-  private async init(options: Options) {
-    this.#connection = await ConnectionFactory.create('local')
+  private async init() {
+    this.#connection = await ConnectionFactory.create('local', {
+      engine: this.options.storageConnection?.engine ?? 'sqlite',
+      engineOptions: this.options.storageConnection?.engineOptions ?? {},
+    })
     this.#models = await Models.create(this)
     return this
   }
@@ -53,7 +56,7 @@ export class AppContext {
     await this.#connection?.close()
   }
 
-  static async create(options: Options) {
-    return new AppContext().init(options)
+  static async create<E extends string = 'sqlite'>(options: Options<E>) {
+    return new AppContext(options).init()
   }
 }

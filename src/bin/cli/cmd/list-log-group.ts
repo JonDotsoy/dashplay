@@ -5,7 +5,7 @@ import { LogGroup } from "../../../logs/logs-group";
 export default async (ctx: AppContext, args: string[]) => {
   const res = await LogGroup.listLogGroups(ctx)
 
-  new ConsoleRender(ctx, {
+  new ConsoleRender(res, ctx, {
     table: {
       columns: {
         'ID': obj => obj.id,
@@ -13,5 +13,5 @@ export default async (ctx: AppContext, args: string[]) => {
         'CREATED AT': obj => new Date(obj.createdAt).toLocaleString(),
       }
     }
-  }).render(res)
+  }).render()
 }

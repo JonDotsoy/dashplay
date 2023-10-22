@@ -35,13 +35,56 @@ dashplay list-log-events --log-group-name asd --log-stream-name asd
 # 10/19/2023, 11:52:13 PM   HTTP  10/19/2023 11:52:13 PM ::1 Returned 304 in 9 ms
 ```
 
-
 ## The Dashplay Cli
 
 ### `dashplay create-log-group`
+
+```
+dashplay create-log-group
+    --log-group-name <logGroupName>
+```
+
 ### `dashplay list-log-group`
+
+```
+dashplay list-log-group
+```
+
 ### `dashplay list-log-stream`
+
+```
+dashplay list-log-stream
+    --log-group-name <logGroupName>
+```
+
 ### `dashplay list-log-events`
+
+```
+dashplay list-log-events
+    --log-group-name <logGroupName>
+    --log-stream-name <logStreamName>
+    [--match <match>]
+```
+
 ### `dashplay create-log-stream`
+
+```
+dashplay create-log-stream
+    --log-group-name <logGroupName>
+    --log-stream-name <logStreamName>
+```
+
 ### `dashplay put-log-events`
-### `dashplay put-log-events`
+
+```
+dashplay put-log-events
+    --log-group-name <logGroupName>
+    --log-stream-name <logStreamName>
+    [--event-message <message>]
+    [--event-stream | -]
+    [--off-print-events]
+```
+
+### `dashplay create-metric-statics`
+
+### `dashplay list-metric-statics`

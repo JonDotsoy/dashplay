@@ -13,7 +13,7 @@ export default async (ctx: AppContext, args: string[]) => {
     [flag('--log-group-name'), isStringAt('logGroupName')],
     [flag('--log-stream-name'), isStringAt('logStreamName')],
     [flag('--event-message'), isStringAt('eventMessage')],
-    [flag('--event-stream'), isBooleanAt('eventStream')],
+    [flag('-', '--event-stream'), isBooleanAt('eventStream')],
     [flag('--off-print-events'), isBooleanAt('offPrintEvents')],
   ]);
 
@@ -29,7 +29,7 @@ export default async (ctx: AppContext, args: string[]) => {
   if (!logStream) throw new Error(`Cannot found log stream`)
 
   if (eventMessage) {
-    return await logStream.sendMessageOne(`${eventMessage}`)
+    return await logStream.insertEventMessageOne(`${eventMessage}`)
   }
   if (eventStream) {
     const pushSubscriptor = new PushSubscriptor()
@@ -41,22 +41,22 @@ export default async (ctx: AppContext, args: string[]) => {
       })
     }
 
-    const rl = createInterface({
+    const readline = createInterface({
       input: process.stdin,
     })
 
-    rl.addListener('line', line => {
+    readline.addListener('line', line => {
       linesToPush.push({ id: ulid(), message: line, timestamp: Date.now() })
       pushSubscriptor.emit()
     })
 
     pushSubscriptor.subscribeAsync(async () => {
       const lines = [...linesToPush]
-      await logStream.sendEvents(lines)
+      await logStream.insertEventMessages(lines)
       linesToPush = []
     })
 
-    await new Promise(r => rl.addListener('close', r))
+    await new Promise(r => readline.addListener('close', r))
     await pushSubscriptor.close()
   }
 

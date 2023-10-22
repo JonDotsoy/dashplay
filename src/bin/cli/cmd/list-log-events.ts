@@ -31,7 +31,7 @@ export default async (ctx: AppContext, args: string[]) => {
   const filter = <T extends { message: string }>(d: T[]) => d.filter(d => test(d.message))
 
   new ConsoleRender<ObjFromSchema<typeof MessageSchema>>(
-    filter(await logStream.listEvents()),
+    filter(await logStream.listEventMessages()),
     ctx,
     {
       table: {

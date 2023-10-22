@@ -1,0 +1,30 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should to calculate date points 1`] = `
+[
+  {
+    "timeStamp": 0,
+    "value": {
+      "count": 3,
+    },
+  },
+  {
+    "timeStamp": 30000,
+    "value": {
+      "count": 27,
+    },
+  },
+  {
+    "timeStamp": 60000,
+    "value": {
+      "count": 11,
+    },
+  },
+  {
+    "timeStamp": 90000,
+    "value": {
+      "count": 1,
+    },
+  },
+]
+`;

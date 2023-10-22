@@ -11,7 +11,7 @@ export class Models {
     readonly logGroups: Model<ObjFromSchema<typeof LogGroupSchema>>,
   ) { }
 
-  static async create(ctx: AppContext) {
+  static async create(ctx: AppContext<any>) {
     return new Models(
       ctx,
       await Model.create(
@@ -22,32 +22,6 @@ export class Models {
     )
   }
 }
-
-/** @deprecated */
-export const connection = await ConnectionFactory.create('local')
-
-/** @deprecated */
-export const users = await Model.create(
-  'users',
-  Schema.createSchema({
-    id: SchemaTypes.string,
-    username: SchemaTypes.string,
-  }),
-  connection,
-);
-
-/** @deprecated */
-export const logGroups = await Model.create(
-  'log-groups',
-  Schema.createSchema({
-    id: SchemaTypes.string,
-    name: SchemaTypes.string,
-    createdAt: SchemaTypes.number,
-  }, {
-    indexes: ['name']
-  }),
-  connection,
-);
 
 export const MessageSchema = Schema.createSchema({
   id: SchemaTypes.string,
