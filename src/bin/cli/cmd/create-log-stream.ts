@@ -1,6 +1,6 @@
 import { flag, flags, isStringAt } from "@jondotsoy/flags";
 import { MissingFlagCliError } from "../../../errors/missing-flag-cli-error";
-import { LogGroup, LogGroupMeta } from "../../../logs/logs-group";
+import { LogGroup } from "../../../logs/logs-group";
 import { AppContext } from "../../../app/app-context";
 import { LogStream } from "../../../logs/logs-stream";
 
