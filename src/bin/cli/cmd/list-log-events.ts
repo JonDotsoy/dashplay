@@ -1,8 +1,8 @@
 import { flags, flag, isStringAt } from "@jondotsoy/flags"
-import { LogStream } from "../../../logs/logs-stream"
+import { LogStream } from "../../../logs-service/logs-stream"
 import { AppContext } from "../../../app/app-context"
 import { MissingFlagCliError } from "../../../errors/missing-flag-cli-error";
-import { LogGroup } from "../../../logs/logs-group";
+import { LogGroup } from "../../../logs-service/logs-group";
 import { ConsoleRender } from "../../../common/console-render";
 import { ObjFromSchema } from "../../../db/query";
 import { type EventMessageSchema } from "../../../db/models"

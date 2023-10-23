@@ -1,6 +1,6 @@
 import { AppContext } from "../../../app/app-context";
 import { ConsoleRender } from "../../../common/console-render";
-import { LogGroup } from "../../../logs/logs-group";
+import { LogGroup } from "../../../logs-service/logs-group";
 
 export default async (ctx: AppContext, args: string[]) => {
   const res = await LogGroup.listLogGroups(ctx)

@@ -1,8 +1,8 @@
 import { flag, flags, isStringAt } from "@jondotsoy/flags";
 import { MissingFlagCliError } from "../../../errors/missing-flag-cli-error";
-import { LogGroup } from "../../../logs/logs-group";
+import { LogGroup } from "../../../logs-service/logs-group";
 import { AppContext } from "../../../app/app-context";
-import { LogStream } from "../../../logs/logs-stream";
+import { LogStream } from "../../../logs-service/logs-stream";
 
 export default async (ctx: AppContext, args: string[]) => {
   const { logGroupName, logStreamName } = flags<{ logGroupName: string, logStreamName: string }>(args, {}, [

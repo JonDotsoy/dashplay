@@ -1,12 +1,12 @@
 import { flags, flag, isStringAt, isBooleanAt } from "@jondotsoy/flags"
 import { MissingFlagCliError } from "../../../errors/missing-flag-cli-error";
-import { LogGroup } from "../../../logs/logs-group";
+import { LogGroup } from "../../../logs-service/logs-group";
 import { createInterface } from "readline"
 import { PushSubscriptor } from "../../../common/push-subscriptor";
 import { ulid } from "ulid";
 import { EventMessage } from "../../../db/models";
 import { AppContext } from "../../../app/app-context";
-import { LogStream } from "../../../logs/logs-stream";
+import { LogStream } from "../../../logs-service/logs-stream";
 
 export default async (ctx: AppContext, args: string[]) => {
   const { logGroupName, logStreamName, eventMessage, eventStream, offPrintEvents = false } = flags<{ logGroupName: string, logStreamName: string, eventMessage: string, eventStream: boolean, offPrintEvents: boolean }>(args, {}, [
