@@ -1,5 +1,5 @@
 import { flag, flags, isStringAt } from "@jondotsoy/flags"
-import { LogGroup } from "../../../logs/logs-group"
+import { LogGroup } from "../../../logs-service/logs-group"
 import { MissingFlagCliError } from "../../../errors/missing-flag-cli-error";
 import { AppContext } from "../../../app/app-context";
 

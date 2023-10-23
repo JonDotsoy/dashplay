@@ -1,3 +1,6 @@
 # SQLite Connection
 
-## Con
+## Storage strategy
+
+The connection instance is stored on `.dbs/${REF}.sqlite`
+

@@ -11,7 +11,7 @@ const makeEvent = (time: number, message: string = `[message]`): EventMessage =>
   return {
     id: ulid(time),
     message: message,
-    timestamp: time,
+    timeStamp: time,
   }
 }
 
