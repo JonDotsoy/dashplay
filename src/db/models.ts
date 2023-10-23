@@ -28,7 +28,7 @@ export type LogStreamManifest = ObjFromSchema<typeof LogStreamManifestSchema>
 export const EventMessageSchema = Schema.createSchema({
   id: SchemaTypes.string,
   message: SchemaTypes.string,
-  timestamp: SchemaTypes.number,
+  timeStamp: SchemaTypes.number,
 })
 
 export const LogGroupSchema = Schema.createSchema({

@@ -40,7 +40,7 @@ export class MetricStatics {
 
     for await (const event of records) {
       let resultAggregate = currentResultAggregate.get()
-      const timeStampKey = toTimeStampKey(event.timestamp)
+      const timeStampKey = toTimeStampKey(event.timeStamp)
 
       if (resultAggregate.timeStamp !== timeStampKey) {
         if (!Number.isNaN(resultAggregate.timeStamp)) yield resultAggregate

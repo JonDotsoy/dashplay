@@ -36,7 +36,7 @@ export default async (ctx: AppContext, args: string[]) => {
     {
       table: {
         columns: {
-          TIMESTAMP: o => new Date(o.timestamp).toLocaleString(),
+          TIMESTAMP: o => new Date(o.timeStamp).toLocaleString(),
           MESSAGE: o => o.message,
         }
       }

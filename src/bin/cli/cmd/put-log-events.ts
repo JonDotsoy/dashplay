@@ -46,7 +46,7 @@ export default async (ctx: AppContext, args: string[]) => {
     })
 
     readline.addListener('line', line => {
-      linesToPush.push({ id: ulid(), message: line, timestamp: Date.now() })
+      linesToPush.push({ id: ulid(), message: line, timeStamp: Date.now() })
       pushSubscriptor.emit()
     })
 
