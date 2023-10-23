@@ -5,7 +5,7 @@ import { MissingFlagCliError } from "../../../errors/missing-flag-cli-error";
 import { LogGroup } from "../../../logs/logs-group";
 import { ConsoleRender } from "../../../common/console-render";
 import { ObjFromSchema } from "../../../db/query";
-import { type MessageSchema } from "../../../db/models"
+import { type EventMessageSchema } from "../../../db/models"
 
 export default async (ctx: AppContext, args: string[]) => {
   const { logGroupName, logStreamName, match } = flags<{ logGroupName: string, logStreamName: string, match: string }>(args, {}, [
@@ -30,7 +30,7 @@ export default async (ctx: AppContext, args: string[]) => {
 
   const filter = <T extends { message: string }>(d: T[]) => d.filter(d => test(d.message))
 
-  new ConsoleRender<ObjFromSchema<typeof MessageSchema>>(
+  new ConsoleRender<ObjFromSchema<typeof EventMessageSchema>>(
     filter(await logStream.listEventMessages()),
     ctx,
     {
