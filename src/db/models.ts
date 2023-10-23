@@ -46,6 +46,7 @@ export const LogStreamManifestSchema = Schema.createSchema({
   name: SchemaTypes.string,
   timestampFrom: SchemaTypes.number,
   timestampTo: SchemaTypes.number,
+  createdAt: SchemaTypes.number,
 }, {
   indexes: ['name']
 })

@@ -2,6 +2,7 @@ export enum SchemaTypes {
   string,
   number,
   boolean,
+  /** @deprecated */
   date,
 }
 
